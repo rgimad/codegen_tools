@@ -1,7 +1,7 @@
 ## Code generation tools
 
-### List of programs
-- IdlistToStrings - this program may be helpful if you need to convert enum or some list of identifiers to C array of string literals
+### List of Tools
+See index.html
 
 ### How to use
-Just download html file and open in your browser
+Open https://rgimad.github.io/codegen_tools
