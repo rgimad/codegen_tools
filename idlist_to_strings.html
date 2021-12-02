@@ -1,0 +1,55 @@
+<!-- rgimad, 2021 -->
+<html>
+    <head>
+        <title>IdlistToStrings</title>
+    </head>
+
+    <body>
+        <h3>Id list to string literal array conversion</h3><br>
+        <table>
+            <tr>
+                <td>
+                <b>Id list:</b><br><br>
+                <textarea rows="25" cols="50" id="srcText"></textarea>
+                </td>
+
+                <td>
+                <input type="button" id="btnConvert" onClick="convert();" value="Convert" style="width: 100px; height: 50px;"/>
+                </td>
+
+                <td>
+                <b>String literal array:</b><br><br>
+                <textarea rows="25" cols="50" id="dstText"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    This program may be helpful if you need to convert enum or<br>
+                    some list of identifiers to C array string literals<br>
+                    Enter smth like:<br>
+                    ONE,<br>
+                    TWO,<br>
+                    THREE,<br>
+                    FOUR<br>
+                    It may contain spaces, tabs and // /**/ comments
+                </td>          
+            </tr>
+        </table>
+
+        <script>
+            function convert() {
+                let srcText = document.getElementById('srcText').value;
+                srcText = srcText.replace(/\/\*[\s\S]*?\*\/|\/\/.*/g,''); // delete // and /**/ comments
+                let srcTextSplit = srcText.split(/ |,|\n|\t/).filter(i => i); // split and delete smpty elements after split
+                console.log(srcTextSplit);
+                let dstText = 'const char *A[] = {\n';
+                for (let x of srcTextSplit) {
+                    dstText = dstText + '    \"' + x + '\",\n';
+                }
+                dstText = dstText.slice(0, -2);
+                dstText += '\n};';
+                document.getElementById('dstText').value = dstText;
+            }
+        </script>
+    </body>
+</html>
