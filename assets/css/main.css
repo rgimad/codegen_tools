@@ -30,6 +30,7 @@ textarea {
 	color: #6fb98f;
 	outline: none;
 	resize: none;
+	text-indent: 20px;
 }
 
 textarea.convert-left {
