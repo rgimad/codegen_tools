@@ -1,52 +1,52 @@
-<!-- rgimad, 2021 -->
-<html>
-    <head>
-        <title>IdlistToStrings</title>
-    </head>
+<!-- author: rgimad [2021] -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>CodeGen: &lt;IDListToStrings&gt;</title>
+    <link rel="icon" type="image/x-icon" href="./assets/img/convert.svg"/>
+    <link rel="stylesheet" type="text/css" href="./assets/css/main.css"/>
+</head>
+<body>
+    <header><h1>ID list to string literal array conversion</h1></header>
+    <main class="wrapper">
+        <section>
+            <div class="convert-left-container">
+                <h3>ID list:</h3>
+                <textarea name="convert" id="s-txt" class="convert-left" cols="50" rows="25"></textarea>  
+            </div>
+            <button>
+                <img
+                    id="cnvt"
+                    class="convert"
+                    type="image/svg+xml"
+                    src="./assets/img/convert.svg"
+                    onclick="convert_to_string();"
+                    alt="Convert to String"
+                />
+            </button>
+            <div class="convert-right-container">
+                <h3>String literal array:</h3>
+                <textarea name="converted" id="d-txt" class="convert-right" cols="50" rows="25"></textarea>
+            </div>
+        </section>
+        <p>
+            Prefix to ID's <input type="text" id="pref"/> (e.g. in C++ you may need <code>Smth::</code>)<br/><br/>
+            This program may be helpful if you need to convert enum or<br/>
+            some list of identifiers to C array of string literals<br/>
+            Enter smth like:<br/>
+            ONE,<br/>
+            TWO,<br/>
+            THREE,<br/>
+            FOUR<br/>
+            It may contain spaces, tabs and <code>//</code>, <code>/**/</code> comments   
+        </p>
+    </main>
+    <footer>
+        <section>&copy; <a href="https://github.com/rgimad/codegen_tools/blob/main/LICENSE">rgimad</a> 2021</section>
+    </footer>
 
-    <body>
-        <h3>Id list to string literal array conversion</h3><br>
-        <table>
-            <tr>
-                <td>
-                <b>Id list:</b><br><br>
-                <textarea rows="25" cols="50" id="srcText"></textarea>
-                </td>
-
-                <td>
-                <input type="button" id="btnConvert" onClick="convert();" value="Convert" style="width: 100px; height: 50px;"/>
-                </td>
-
-                <td>
-                <b>String literal array:</b><br><br>
-                <textarea rows="25" cols="50" id="dstText"></textarea>
-                </td>
-            </tr>
-        </table>
-        Prefix to Id's<input type="text" id="idsPref"/> (For example in C++ you may need Smth::)<br><br>
-        This program may be helpful if you need to convert enum or<br>
-        some list of identifiers to C array of string literals<br>
-        Enter smth like:<br>
-        ONE,<br>
-        TWO,<br>
-        THREE,<br>
-        FOUR<br>
-        It may contain spaces, tabs and // /**/ comments
-        <script>
-            function convert() {
-                let srcText = document.getElementById('srcText').value;
-                let idsPref = document.getElementById('idsPref').value;
-                srcText = srcText.replace(/\/\*[\s\S]*?\*\/|\/\/.*/g,''); // delete // and /**/ comments
-                let srcTextSplit = srcText.split(/ |,|\n|\t/).filter(i => i); // split and delete smpty elements after split
-                console.log(srcTextSplit);
-                let dstText = 'const char *A[] = {\n';
-                for (let x of srcTextSplit) {
-                    dstText = dstText + '    \"' + idsPref+x + '\",\n';
-                }
-                dstText = dstText.slice(0, -2);
-                dstText += '\n};';
-                document.getElementById('dstText').value = dstText;
-            }
-        </script>
-    </body>
+    <!--=================================================-->
+    <script type="text/javascript" src="./main.js"></script>
+</body>
 </html>
