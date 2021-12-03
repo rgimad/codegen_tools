@@ -30,21 +30,8 @@ textarea {
 	color: #6fb98f;
 	outline: none;
 	resize: none;
-	text-indent: 0px;
-}
-
-textarea.convert-left {
-	border-top-left-radius: 2%;
-	border-top-right-radius: 2%;
-	border-bottom-left-radius: 2%;
-	border-bottom-right-radius: 2%;
-}
-
-textarea.convert-right {
-	border-top-right-radius: 2%;
-	border-top-right-radius: 2%;
-	border-bottom-right-radius: 2%;
-	border-bottom-right-radius: 2%;
+	text-indent: 0;
+	border-radius: 2%;
 }
 
 h1.code-generation-tools {
